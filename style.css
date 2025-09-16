@@ -1,0 +1,1345 @@
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Sidebar layout */
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #000;
+    padding: 20px 15px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid #282828;
+    overflow-y: auto;   /* still scrollable */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+  /* Sidebar base */
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #000;
+    padding: 20px 15px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    scrollbar-width: none;
+    border-radius: 12px;  /* Rounded edges like cards */
+    z-index: 1;
+  }
+
+  /* Hide scrollbar */
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* RGB border effect (same as card) */
+  .sidebar::before {
+    content: "";
+    position: absolute;
+    inset: 0;  /* covers full sidebar */
+    border-radius: inherit;
+    padding: 2px; /* border thickness */
+    background: linear-gradient(45deg,
+      red, orange, yellow, lime, cyan, blue, violet, red);
+    background-size: 400% 400%;
+    animation: rgbGlow 6s linear infinite;
+    
+    /* Mask so only border glows */
+    -webkit-mask: 
+      linear-gradient(#000 0 0) content-box, 
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    
+    z-index: -1; /* behind sidebar */
+  }
+
+  /* RGB Glow Animation */
+  @keyframes rgbGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  /* Normal sidebar links */
+  .nav-links li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #b3b3b3; /* fallback color */
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* RGB glowing text */
+  .nav-links li a.rgb-text {
+    background: linear-gradient(45deg,
+      red, orange, yellow, lime, cyan, blue, violet, red);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rgbText 6s linear infinite;
+    font-weight: 700;
+  }
+  .logo {
+    margin: 0;
+    padding: 0;
+  }
+
+  .logo img {
+    width: 130px;
+    height: auto;
+    display: block;
+    margin: 0 0 0 0; /* only bottom spacing */
+    cursor: pointer;
+  }
+
+  /* Nav links */
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* keep items at top */
+    border-bottom: 1px solid #282828;
+    padding-top: 10px;
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+  }
+
+  .nav-links li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #b3b3b3;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 5px;
+  }
+
+  .nav-links li a:hover {
+    color: #34e471;
+    background-color: #181818;
+  }
+
+  .nav-links li a i {
+    font-size: 20px;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+  }
+
+  /* Privacy section */
+  .privacy {
+    border-top: 1px solid #282828;
+    padding-top: 15px;
+  }
+
+  .privacy ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .privacy ul li a {
+    text-decoration: none;
+    color: #b3b3b3;
+    font-size: 12px;
+    margin-left: 10px;
+    transition: color 0.3s;
+    padding-top: 5px;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .privacy ul li a:hover{
+    text-decoration: underline;
+  }
+  .privacy ul li a:hover {
+    color:#34e471; 
+  }
+
+  /* Install app section */
+  .install-app {
+    border-top: 1px solid #282828;
+    padding-top: 15px;
+  }
+
+  .install-app a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #b3b3b3;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  .install-app a:hover {
+    color: #1db954; 
+  }
+  .install-app i {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  .main-section {
+    margin-left: 300px; /* same as sidebar width */
+    padding: 20px 30px;
+    flex-grow: 1;
+    background-color: #252525;
+    overflow-y: auto;
+    height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent; /* Firefox */
+  }
+  .main-section .top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 25px 30px;
+    background-color: #1b1b1b;
+    border-radius: 8px;
+    border: 1px solid #282828;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  .main-section .top-nav button{
+    background-color:transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .main-section .top-nav .login-btn :hover{
+    background-color: #098e33;
+    color: rgb(9, 9, 9);
+  }
+  .main-section .top-nav button:hover{
+    background-color: #474947;
+  }
+  /* Top navigation */
+  .main-section .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 25px 30px;
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* RGB border effect (same as card & sidebar) */
+  .main-section .top-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px; /* thickness of glow border */
+    background: linear-gradient(45deg,
+      red, orange, yellow, lime, cyan, blue, violet, red);
+    background-size: 400% 400%;
+    animation: rgbGlow 6s linear infinite;
+
+    /* mask so only border is visible */
+    -webkit-mask: 
+      linear-gradient(#000 0 0) content-box, 
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    z-index: -1; /* behind content */
+  }
+
+  /* Reuse the same animation */
+  @keyframes rgbGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  /* Popular album cards */
+  .spotify-playlist .card .item {
+    position: relative;
+    border-radius: 14px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  /* RGB animation */
+  @keyframes rgb-border {
+    0%   { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+    25%  { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+    50%  { border-color: #0000ff; box-shadow: 0 0 15px #0000ff; }
+    75%  { border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; }
+    100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+  }
+
+  /* Spotify Playlist Section */
+  .spotify-playlist {
+    margin: 20px 0;
+    padding: 20px;
+    border: 3px solid;
+    border-radius: 15px;
+    animation: rgb-border 5s linear infinite;
+  }
+
+  /* Main Section Top Nav */
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border: 3px solid;
+    border-radius: 12px;
+    animation: rgb-border 5s linear infinite;
+  }
+  /* Animated RGB background */
+  .spotify-playlist .card .item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(45deg,
+      red, orange, yellow, lime, cyan, blue, violet, red);
+    background-size: 400% 400%;
+    animation: rgbBackground 8s linear infinite;
+    z-index: -2;
+  }
+
+  /* Dark overlay for readability */
+  .spotify-playlist .card .item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+  }
+
+  /* Hover effect: pop up + glow */
+  .spotify-playlist .card .item:hover {
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
+                0 0 25px rgba(29, 185, 84, 0.7);
+  }
+
+  /* Floating effect (applies always) */
+  .spotify-playlist .card .item {
+    animation: floatAlbum 6s ease-in-out infinite;
+  }
+
+  /* Floating keyframes */
+  @keyframes floatAlbum {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* RGB background animation */
+  @keyframes rgbBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  /* Make heading a link */
+  .spotify-playlist h2 a {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
+  }
+  /* Popular Albums heading */
+  .spotify-playlist h2 a {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .spotify-playlist .card {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+  }
+
+  .spotify-playlist .card::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .spotify-playlist{
+    padding: 20px 40px;
+    background-color: #1b1b1b;
+    border-radius: 8px;
+    border: 1px solid #282828;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s;
+  }
+  .spotify-playlist .card .item {
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative; /* add this for absolute positioning of play button */
+    overflow: hidden;
+    z-index:1;
+  }
+  .spotify-playlist .card .item {
+    background-color: #282828;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative; 
+    overflow: hidden;
+    z-index: 0; /* allow glow behind */
+  }
+
+  /* RGB Glow Effect */
+  .spotify-playlist .card .item::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* covers full card */
+    border-radius: inherit;
+    padding: 2px; /* thickness of glow border */
+    background: linear-gradient(45deg,
+      red, orange, yellow, lime, cyan, blue, violet, red);
+    background-size: 400% 400%;
+    animation: rgbGlow 6s linear infinite;
+    -webkit-mask: 
+        linear-gradient(#000 0 0) content-box, 
+        linear-gradient(#000 0 0); 
+    -webkit-mask-composite: xor;
+    mask-composite: exclude; 
+    z-index: -1; /* keep glow behind */
+  }
+
+  /* RGB Glow Animation */
+  @keyframes rgbGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .spotify-playlist.card .item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  .spotify-playlist .card .item img{
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .spotify-playlist .card .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  .spotify-playlist .card .item p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;  
+    width: 100%;
+    transition: color 0.3s;
+    text-decoration:none; /* default no underline */
+  }
+
+  .spotify-playlist .card .item p:hover{
+    text-decoration: underline; /* show underline when clicked */
+    color: #1db954; /* optional: make it green like Spotify */
+  }
+  /* Play button wrapper */
+  .spotify-playlist .play-btn {
+    position: absolute;   /* keep it inside the card */
+    bottom: 80px;         /* distance from bottom */
+    right: 20px;         /* distance from right */
+    opacity: 0;           /* hidden by default */
+    transform: translateY(20px); /* start slightly lower */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Play button icon */
+  .spotify-playlist .play-btn i {
+    background-color: #1db954;
+    border-radius: 50%;
+    width: 50px;          /* bigger like Spotify */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease-in-out, background-color 0.2s;
+  }
+
+  /* On card hover → show play button */
+  .spotify-playlist .card .item:hover .play-btn {
+    opacity: 1;
+    transform: translateY(0); /* slides up smoothly */
+  }
+
+  /* Extra Spotify-like effect: grow on hover */
+  .spotify-playlist .play-btn i:hover {
+    transform: scale(1.1);
+    background-color: #1ed760; /* lighter green like Spotify */
+  }
+  /* Wrapper for arrows + artist row */
+  .spotify-artist-wrapper {
+    position: relative;
+    padding: 20px 40px;
+    background-color: #1b1b1b;
+    border-radius: 8px;
+    border: 1px solid #282828;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+
+  /* Scrollable row */
+  .spotify-artist {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  .spotify-artist .card {
+    display: flex;
+    gap: 25px;
+    padding: 15px 10px;
+  }
+  .spotify-artist::-webkit-scrollbar { display: none; }
+
+  /* Artist item */
+  .spotify-artist .card .item {
+    flex: 0 0 auto;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .spotify-artist .card .item img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #282828;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .spotify-artist .card .item:hover img {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(29,185,84,0.6);
+  }
+  .spotify-artist .card .item h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Scroll buttons */
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* hidden by default */
+    z-index: 2;
+  }
+  .scroll-btn.left { left: 10px; }
+  .scroll-btn.right { right: 10px; }
+
+  /* Show arrows on hover */
+  .spotify-artist-wrapper:hover .scroll-btn {
+    display: block;
+  }
+  .scroll-btn:hover {
+    background: #1db954;
+    color: black;
+  }
+  .now-playing {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid #282828;
+    color: white;
+    z-index: 1000;
+  }  
+  .item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .item a:hover h4 {
+    color: #1db954; /* Spotify green hover effect */
+  }
+  /* Now Playing Bar */
+  .now-playing {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    border-top: 1px solid #333;
+  }
+
+  .song-info {
+    flex: 1;
+  }
+
+  .song-info h4 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .song-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  .controls {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .progress-container {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #progress {
+    flex: 1;
+  }
+
+  .volume {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .volume input {
+    width: 100px;
+  }
+  .volume i {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+    .main-section {
+      margin-left: 220px;
+      padding: 15px 20px;
+    }
+    .spotify-playlist h2 a {
+      font-size: 24px;
+    }
+    .spotify-playlist .card .item {
+      width: 120px;
+    }
+    .spotify-artist .card .item {
+      width: 120px;
+    }
+    .spotify-artist .card .item img {
+      width: 110px;
+      height: 110px;
+    }
+  }
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .sidebar {
+      width: 60px;
+      padding: 20px 5px;
+    }
+    .sidebar .nav-links li a span {
+      display: none; /* hide text */
+    }
+    .main-section {
+      margin-left: 80px;
+      padding: 10px 15px;
+    }
+    .spotify-playlist h2 a {
+      font-size: 20px;
+    }
+    .spotify-playlist .card .item {
+      width: 100px;
+      padding: 8px;
+    }
+    .spotify-artist .card .item {
+      width: 100px;
+    }
+    .spotify-artist .card .item img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  /* 🎵 Now Playing Bar */
+  .now-playing {
+    position: fixed;
+    bottom: -100px; /* hidden initially */
+    left: 0;
+    width: 100%;
+    background: #181818;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: bottom 0.4s ease;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    z-index: 1000;
+  }
+
+  .now-playing.active {
+    bottom: 0; /* slide up when active */
+  }
+
+  /* Song Info */
+  .now-playing .info {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #now-title {
+    color: #1db954; /* Spotify green */
+  }
+
+  /* Controls */
+  .now-playing .controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .now-playing .controls button {
+    background: none;
+    border: none;
+    color: #ddd;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .now-playing .controls button:hover {
+    color: #1db954;
+    transform: scale(1.2);
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    flex: 2;
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .progress-bar input {
+    flex: 1;
+    accent-color: #1db954; /* green seek bar */
+    cursor: pointer;
+  }
+
+  /* Time labels */
+  #current-time,
+  #duration {
+    font-size: 12px;
+    color: #bbb;
+  }
+
+  /* Volume control */
+  .volume {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ddd;
+  }
+
+  .volume input {
+    width: 80px;
+    accent-color: #1db954;
+    cursor: pointer;
+  }
+  /* 🎶 Now Playing Bar */
+  .now-playing {
+    position: fixed;
+    bottom: -100px; /* hidden initially */
+    left: 0;
+    width: 100%;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: bottom 0.4s ease;
+    box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.7);
+    border-top: 3px solid;
+    border-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet) 1;
+    z-index: 1000;
+    color: #fff;
+  }
+
+  /* Show bar when active */
+  .now-playing.active {
+    bottom: 0;
+  }
+
+  /* Song Info + Image */
+  .now-playing .song-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .now-playing .song-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  .now-playing .song-info .details {
+    display: flex;
+    flex-direction: column;
+  }
+  .now-playing .song-info .details h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #1db954; /* Spotify green */
+    font-weight: 700;
+  }
+  .now-playing .song-info .details p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #ccc;
+  }
+
+  /* Controls Section */
+  .now-playing .controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .now-playing .controls button {
+    background: none;
+    border: none;
+    color: #ddd;
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .now-playing .controls button:hover {
+    color: #1db954;
+    transform: scale(1.2);
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px;
+  }
+  .progress-bar input[type="range"] {
+    flex: 1;
+    cursor: pointer;
+    accent-color: #1db954;
+  }
+  .progress-bar #current-time,
+  .progress-bar #duration {
+    font-size: 12px;
+    color: #bbb;
+  }
+
+  /* Volume Control */
+  .volume {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ddd;
+  }
+  .volume input[type="range"] {
+    width: 80px;
+    accent-color: #1db954;
+    cursor: pointer;
+  }
+
+  /* RGB Glow Background when playing */
+  body.playing {
+    background: linear-gradient(270deg, #ff0000, #00ff00, #0000ff, #ff00ff);
+    background-size: 600% 600%;
+    animation: rgbBG 12s ease infinite;
+  }
+  @keyframes rgbBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  /* -------------------- RESPONSIVE FIXES -------------------- */
+
+  /* Large tablets / smaller desktops */
+  @media (max-width: 1024px) {
+    .sidebar { width: 200px; }
+    .main-section { margin-left: 220px; padding: 15px 20px; }
+    .spotify-playlist .card .item, .spotify-artist .card .item { width: 120px; }
+    .spotify-artist .card .item img { width: 110px; height: 110px; }
+  }
+
+  /* Tablets and small laptops */
+  @media (max-width: 768px) {
+    .sidebar { width: 80px; padding: 20px 5px; }
+    .sidebar .nav-links li a span { display: none; }
+    .main-section { margin-left: 90px; padding: 10px 15px; }
+    .spotify-playlist .card .item, .spotify-artist .card .item { width: 100px; }
+    .spotify-artist .card .item img { width: 90px; height: 90px; }
+    .top-nav { flex-direction: column; padding: 15px 10px; }
+  }
+
+  /* Mobile devices */
+  @media (max-width: 480px) {
+    .sidebar { width: 60px; padding: 15px 5px; }
+    .sidebar .nav-links li a span { display: none; }
+    .main-section { margin-left: 70px; padding: 10px 10px; }
+    .spotify-playlist .card .item, .spotify-artist .card .item { width: 90px; }
+    .spotify-artist .card .item img { width: 80px; height: 80px; }
+    .spotify-playlist h2 a { font-size: 20px; }
+    .spotify-playlist, .spotify-artist-wrapper { padding: 15px 10px; }
+  }
+
+  /* Extra small mobile adjustments */
+  @media (max-width: 360px) {
+    .spotify-playlist .card .item, .spotify-artist .card .item { width: 70px; }
+    .spotify-artist .card .item img { width: 60px; height: 60px; }
+    .top-nav { padding: 10px 8px; font-size: 14px; }
+    .now-playing .song-info img { width: 50px; height: 50px; }
+    .now-playing { padding: 10px 15px; font-size: 13px; }
+  }
+  /* Fix for very small screens */
+  @media (max-width: 320px) { 
+    .spotify-playlist .card .item, .spotify-artist .card .item { width: 60px; }
+    .spotify-artist .card .item img { width: 50px; height: 50px; }
+    .now-playing .song-info img { width: 40px; height: 40px; }
+    .now-playing { padding: 8px 10px; font-size: 12px; }
+  } 
+  /* 📱 Fix Sidebar overlap on small screens */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px; /* collapse */
+    padding: 10px;
+  }
+
+  .sidebar .logo,
+  .sidebar .navigation li a span {
+    display: none; /* hide text, keep icons */
+  }
+
+  main {
+    margin-left: 60px; /* match collapsed sidebar */
+  }
+}
+/* 📱 Fix Play button visibility */
+.card .play {
+  bottom: 20px; /* closer to bottom */
+  right: 15px;
+  transform: scale(1);
+}
+
+@media (max-width: 600px) {
+  .card .play {
+    bottom: 10px;
+    right: 10px;
+    transform: scale(0.8); /* smaller for mobile */
+  }
+}
+/* 📱 Fix Popular Albums shrinking */
+.spotify-playlist .list .item {
+  flex: 0 0 160px; /* fixed min width */
+}
+
+@media (max-width: 600px) {
+  .spotify-playlist .list .item {
+    flex: 0 0 130px; /* still readable on small phones */
+  }
+}
+/* 🎵 Unified Now Playing Bar */
+.now-playing {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #282828;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-top: 1px solid #444;
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(100%); /* hidden by default */
+}
+
+.now-playing.active {
+  transform: translateY(0); /* slide up when active */
+}
+
+.now-playing img {
+  height: 60px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+.now-playing .song-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.now-playing .song-info .details {
+  display: flex;
+  flex-direction: column;
+}
+.now-playing .song-info .details h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #1db954; /* Spotify green */
+  font-weight: 700;
+}
+.now-playing .song-info .details p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #ccc;
+}
+.now-playing .controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.now-playing .controls button {
+  background: none;
+  border: none;
+  color: #ddd;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.now-playing .controls button:hover {
+  color: #1db954;
+  transform: scale(1.2);
+}
+.now-playing .progress-bar {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 20px;
+}
+.now-playing .progress-bar input[type="range"] {
+  flex: 1;
+  cursor: pointer;
+  accent-color: #1db954;
+}
+.now-playing .progress-bar #current-time,
+.now-playing .progress-bar #duration {
+  font-size: 12px;
+  color: #bbb;
+}   
+.now-playing .volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ddd;
+}
+.now-playing .volume input[type="range"] {
+  width: 80px;
+  accent-color: #1db954;
+  cursor: pointer;
+}
+/* 🎵 Glowing RGB Text Animation */
+@keyframes rgbText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes rgbGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes rgbBorder {
+  0%   { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+  25%  { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+  50%  { border-color: #0000ff; box-shadow: 0 0 15px #0000ff; }
+  75%  { border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; }
+  100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+}
+/* Apply to headings */
+h1, h2, h3, h4, h5, h6 {
+  background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgbText 6s linear infinite;
+}
+/* 📱 Sidebar collapse fix */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding: 10px 5px;
+  }
+  .sidebar .logo img {
+    width: 40px;
+  }
+  .sidebar .nav-links li a span {
+    display: none; /* hide text, keep icons */
+  }
+  .main-section {
+    margin-left: 80px; /* match sidebar width */
+    padding: 10px 15px;
+  }
+}
+
+/* 📱 Cards fix (Albums / Artists / Playlists) */
+@media (max-width: 768px) {
+  .spotify-playlist .card,
+  .spotify-artist .card {
+    gap: 12px;
+    padding: 8px;
+  }
+  .spotify-playlist .card .item,
+  .spotify-artist .card .item {
+    flex: 0 0 120px;
+    min-width: 120px;
+  }
+  .spotify-artist .card .item img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* 📱 Smaller mobiles */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 60px;
+  }
+  .main-section {
+    margin-left: 70px;
+    padding: 8px 10px;
+  }
+  .spotify-playlist .card .item,
+  .spotify-artist .card .item {
+    flex: 0 0 100px;
+    min-width: 100px;
+  }
+  .spotify-artist .card .item img {
+    width: 90px;
+    height: 90px;
+  }
+  .spotify-playlist h2 a {
+    font-size: 18px;
+  }
+}
+
+/* 🎵 Play Button always visible */
+.spotify-playlist .play-btn {
+  bottom: 15px;
+  right: 15px;
+  opacity: 1; /* visible by default on small screens */
+  transform: scale(0.9);
+}
+@media (min-width: 769px) {
+  .spotify-playlist .play-btn {
+    opacity: 0; /* desktop: only show on hover */
+    transform: translateY(20px);
+  }
+  .spotify-playlist .card .item:hover .play-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🎶 Now Playing Bar Fix */
+.now-playing {
+  height: 80px;
+  bottom: -100px;
+}
+.now-playing.active {
+  bottom: 0;
+}
+@media (max-width: 480px) {
+  .now-playing {
+    height: 70px;
+    padding: 10px 12px;
+  }
+  .now-playing .song-info img {
+    width: 45px;
+    height: 45px;
+  }
+  .now-playing .song-info .details h4 {
+    font-size: 14px;
+  }
+}
+/* Default (Desktop) */
+.play-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 50%;
+  background: #1db954;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .play-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .play-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .play-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+}
+/* 📱 Responsive Play Button Fix */
+@media (max-width: 768px) {
+  .spotify-playlist .play-btn i {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotify-playlist .play-btn {
+    bottom: 60px; /* move up a bit */
+    right: 10px;
+  }
+  .spotify-playlist .play-btn i {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .spotify-playlist .play-btn {
+    bottom: 50px;
+    right: 8px;
+  }
+  .spotify-playlist .play-btn i {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
+
+
