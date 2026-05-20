@@ -3,7 +3,7 @@
 A fully responsive, pixel-perfect frontend clone of the Spotify Web Player. This project replicates the core user interface of Spotify and implements active audio playback controls using native JavaScript.
 
 ## 🚀 Live Demo
-[Insert your live hosting link here, e.g., GitHub Pages / Vercel / Netlify]
+https://spotifyclone3y4y3.netlify.app/
 
 ## ✨ Features
 
